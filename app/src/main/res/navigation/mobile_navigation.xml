@@ -12,14 +12,21 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.team51project1.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_classes"
+        android:name="com.example.team51project1.ui.classes.ClassesFragment"
+        android:label="@string/title_classes"
+        tools:layout="@layout/fragment_classes" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.team51project1.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_assignments"
+        android:name="com.example.team51project1.ui.assignments.AssignmentsFragment"
+        android:label="@string/title_assignments"
+        tools:layout="@layout/fragment_assignments" />
+
+    <fragment
+        android:id="@+id/navigation_exams"
+        android:name="com.example.team51project1.ui.exams.ExamsFragment"
+        android:label="@string/title_exams"
+        tools:layout="@layout/fragment_assignments" />
+
 </navigation>
