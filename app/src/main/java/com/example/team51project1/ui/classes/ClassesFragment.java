@@ -10,8 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.team51project1.R;
 import com.example.team51project1.databinding.FragmentClassesBinding;
+import com.example.team51project1.ui.home.HomeFragment;
 
 public class ClassesFragment extends Fragment {
 
@@ -29,6 +32,22 @@ public class ClassesFragment extends Fragment {
         classesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        view.findViewById(R.id.homeButtonC).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ClassesFragment.this)
+                        .navigate(R.id.action_navigation_classes_to_navigation_home2);
+            }
+        });
+
+
+
+    }
+
 
     @Override
     public void onDestroyView() {
