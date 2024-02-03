@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-//does this make a change?
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,7 +17,7 @@ import com.example.team51project1.R;
 import com.example.team51project1.databinding.FragmentClassesBinding;
 import com.example.team51project1.ui.home.HomeFragment;
 
-public class ClassesFragment extends Fragment {
+public class AddClassFragment extends Fragment {
 
     private FragmentClassesBinding binding;
 
@@ -40,21 +39,24 @@ public class ClassesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.homeButtonC).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.backToClassesButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(ClassesFragment.this)
-                        .navigate(R.id.action_navigation_classes_to_navigation_home2);
+                NavHostFragment.findNavController(AddClassFragment.this)
+                        .navigate(R.id.action_navigation_add_class_to_navigation_classes);
             }
         });
+/*
+        binding.backToClassesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(AddClassFragment.this)
+                        .navigate(R.id.action_navigation_add_class_to_navigation_classes);
+            }
+        });
+*/
 
-        view.findViewById(R.id.addEditClasses).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(ClassesFragment.this)
-                        .navigate(R.id.action_navigation_classes_to_navigation_add_class);
-            }
-        });
+
 
 
 

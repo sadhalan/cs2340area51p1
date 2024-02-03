@@ -20,7 +20,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.team51project1.R;
 import com.example.team51project1.databinding.FragmentTasksBinding;
-import com.example.team51project1.databinding.FragmentHomeBinding;
 import com.example.team51project1.ui.exams.ExamsFragment;
 import com.example.team51project1.ui.home.HomeViewModel;
 import com.example.team51project1.ui.todolist.ToDoListViewModel;
@@ -35,6 +34,7 @@ public class ToDoListFragment extends Fragment {
     private ListView listView;
     private Button addItemButton;
     //private EditText input;
+    public EditText input;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ToDoListViewModel toDoListViewModel =
@@ -54,10 +54,13 @@ public class ToDoListFragment extends Fragment {
 
         listView = view.findViewById(R.id.toDoListView);
         addItemButton = view.findViewById(R.id.button2);
+        input = view.findViewById(R.id.editItem2);
+        input.setEnabled(true);
 
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //input = view.findViewById(R.id.editItem);
                 additem();
             }
         });
@@ -83,8 +86,7 @@ public class ToDoListFragment extends Fragment {
     }
 
     private void additem() {
-        EditText input = getView().findViewById(R.id.editItem);
-
+        //input = this.input;
         String itemText = input.getText().toString();
 
         if (!(itemText.equals(""))) {
