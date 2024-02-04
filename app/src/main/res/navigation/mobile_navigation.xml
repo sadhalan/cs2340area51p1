@@ -34,9 +34,6 @@
         <action
             android:id="@+id/action_navigation_classes_to_navigation_home2"
             app:destination="@id/navigation_home" />
-        <action
-            android:id="@+id/action_navigation_classes_to_navigation_add_class"
-            app:destination="@id/navigation_add_class" />
     </fragment>
 
     <fragment
@@ -70,17 +67,6 @@
             android:id="@+id/action_navigation_todo_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
-
-    <fragment
-        android:id="@+id/navigation_add_class"
-        android:name="com.example.team51project1.ui.classes.AddClassFragment"
-        android:label="Add Class"
-        tools:layout="@layout/fragment_add_class" >
-        <action
-            android:id="@+id/action_navigation_add_class_to_navigation_classes"
-            app:destination="@id/navigation_classes" />
-    </fragment>
-
 
 
 </navigation>
