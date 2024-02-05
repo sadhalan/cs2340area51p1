@@ -60,7 +60,7 @@
 
     <fragment
         android:id="@+id/navigation_todo"
-        android:name="com.example.team51project1.ui.todolist.ToDoListFragment"
+        android:name="com.example.team51project1.ui.todolist.TaskFragment"
         android:label="To-Do List"
         tools:layout="@layout/fragment_tasks" >
         <action

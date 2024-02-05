@@ -1,4 +1,4 @@
-package com.example.team51project1.ui.assignments;
+package com.example.team51project1.ui.todolist;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,29 +13,32 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.team51project1.Assignment;
 import com.example.team51project1.Course;
 import com.example.team51project1.R;
-import com.example.team51project1.databinding.FragmentAssignmentsBinding;
+import com.example.team51project1.Task;
+import com.example.team51project1.databinding.FragmentTasksBinding;
+import com.example.team51project1.ui.todolist.TaskFragment;
+import com.example.team51project1.ui.todolist.ToDoListViewModel;
 import com.example.team51project1.ui.classes.ClassesFragment;
 
 import java.util.ArrayList;
 
-//does this make a change?
-public class AssignmentsFragment extends Fragment {
+public class TaskFragment extends Fragment {
 
     int selected;
-    private FragmentAssignmentsBinding binding;
+    private FragmentTasksBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        AssignmentsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(AssignmentsViewModel.class);
+        ToDoListViewModel notificationsViewModel =
+                new ViewModelProvider(this).get(ToDoListViewModel.class);
 
-        binding = FragmentAssignmentsBinding.inflate(inflater, container, false);
+        binding = FragmentTasksBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         return root;
@@ -44,52 +47,52 @@ public class AssignmentsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.homeButtonAssignments).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.homeButtonTasks).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(AssignmentsFragment.this)
-                        .navigate(R.id.action_navigation_assignments_to_navigation_home3);
+                NavHostFragment.findNavController(TaskFragment.this)
+                        .navigate(R.id.action_navigation_todo_to_navigation_home);
             }
         });
 
         selected = -1;
 
-        ListView assignmentListView = (ListView) view.findViewById(R.id.assignmentList);
-        ArrayList<Assignment> backingArray = new ArrayList<>();
-        ArrayAdapter<Assignment> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, backingArray);
-        assignmentListView.setAdapter(adapter);
+        ListView taskListView = (ListView) view.findViewById(R.id.taskList);
+        ArrayList<Task> backingArray = new ArrayList<>();
+        ArrayAdapter<Task> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, backingArray);
+        taskListView.setAdapter(adapter);
 
-        EditText enterAssignment = view.findViewById(R.id.assignment_title);
-        EditText enterDueDate = view.findViewById(R.id.assignment_duedate);
-        EditText enterCourse = view.findViewById(R.id.assignment_course);
+        EditText enterTask = view.findViewById(R.id.task_title);
+        EditText enterDueDate = view.findViewById(R.id.task_duedate);
+        EditText enterCourse = view.findViewById(R.id.task_course);
 
-        Button addAssignment = view.findViewById(R.id.addAssignment);
+        Button addTask = view.findViewById(R.id.addTask);
 
 
-        addAssignment.setOnClickListener(new View.OnClickListener() {
+        addTask.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                String assignmentStr = enterAssignment.getText().toString();
+                String taskStr = enterTask.getText().toString();
                 String dueDateStr = enterDueDate.getText().toString();
                 String courseStr = enterCourse.getText().toString();
-                backingArray.add(new Assignment(assignmentStr, dueDateStr, courseStr));
+                backingArray.add(new Task(taskStr, dueDateStr, courseStr));
                 adapter.notifyDataSetChanged();
 
-                enterAssignment.setText("");
+                enterTask.setText("");
                 enterDueDate.setText("");
                 enterCourse.setText("");
             }
         });
 
-        Button edit = view.findViewById(R.id.editAssignment);
-        assignmentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Button edit = view.findViewById(R.id.editTask);
+        taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
-                enterAssignment.setText(backingArray.get(position).getAssignmentName());
-                enterDueDate.setText(backingArray.get(position).getAssignmentDueDate());
-                enterCourse.setText(backingArray.get(position).getAssignmentCourse());
+                enterTask.setText(backingArray.get(position).getTaskName());
+                enterDueDate.setText(backingArray.get(position).getTaskDueDate());
+                enterCourse.setText(backingArray.get(position).getTaskCourse());
 
             }
         });
@@ -98,12 +101,12 @@ public class AssignmentsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (selected != -1) {
-                    backingArray.get(selected).setAssignmentName(enterAssignment.getText().toString());
-                    backingArray.get(selected).setAssignmentDueDate(enterDueDate.getText().toString());
-                    backingArray.get(selected).setAssociatedCourse(enterCourse.getText().toString());
+                    backingArray.get(selected).setTaskName(enterTask.getText().toString());
+                    backingArray.get(selected).setTaskDueDate(enterDueDate.getText().toString());
+                    backingArray.get(selected).setTaskCourse(enterCourse.getText().toString());
                     adapter.notifyDataSetChanged();
 
-                    enterAssignment.setText("");
+                    enterTask.setText("");
                     enterDueDate.setText("");
                     enterCourse.setText("");
                     selected = -1;
@@ -111,7 +114,7 @@ public class AssignmentsFragment extends Fragment {
             }
         });
 
-        Button del = view.findViewById(R.id.deleteAssignment);
+        Button del = view.findViewById(R.id.deleteTask);
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +123,7 @@ public class AssignmentsFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                     selected = -1;
 
-                    enterAssignment.setText("");
+                    enterTask.setText("");
                     enterDueDate.setText("");
                     enterCourse.setText("");
                 }
