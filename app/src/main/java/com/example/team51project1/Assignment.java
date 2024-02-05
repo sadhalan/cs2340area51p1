@@ -2,32 +2,43 @@ package com.example.team51project1;
 
 public class Assignment {
     private String assignmentName;
-    private int dueDate;
-    private Course associatedCourse;
+    private String dueDate;
+    private String associatedCourse;
 
-    public Assignment(String assignmentName, int dueDate, Course associatedCourse) {
+    public Assignment(String assignmentName, String dueDate, String associatedCourse) {
         this.assignmentName = assignmentName;
         this.dueDate = dueDate;
         this.associatedCourse = associatedCourse;
     }
 
-    public String getCourseName(){
+    public String getAssignmentName(){
         return assignmentName;
     }
 
-    public int getAssignmentDueDate(){
+    public String getAssignmentDueDate(){
         return dueDate;
     }
 
-    public Course getAssignmentCourse(){
+    public String getAssignmentCourse(){
         return associatedCourse;
     }
 
-/*
-    public String toString(){
-        return ""
+    public void setAssignmentName(String name) {
+        this.assignmentName = name;
     }
-*/
+
+    public void setAssignmentDueDate(String duedate) {
+        this.dueDate = duedate;
+    }
+
+    public void setAssociatedCourse(String course) {
+        this.associatedCourse = course;
+    }
+
+    public String toString(){
+        return "Assignment: " + assignmentName + "\nDue Date: " + dueDate + "\nCourse: " + associatedCourse;
+
+    }
 
 
 }
