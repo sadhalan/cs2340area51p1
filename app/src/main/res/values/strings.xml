@@ -4,5 +4,6 @@
     <string name="title_classes">Classes</string>
     <string name="title_assignments">Assignments</string>
     <string name="title_exams">Exams</string>
+    <string name="title_tasks">To-Do List</string>
 
 </resources>
