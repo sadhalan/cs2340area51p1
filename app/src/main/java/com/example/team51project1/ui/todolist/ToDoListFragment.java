@@ -49,6 +49,7 @@ public class ToDoListFragment extends Fragment {
         return root;
     }
 
+    //the "ADD TASK" button, this will be duplicated for "ADD EXAM"
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 

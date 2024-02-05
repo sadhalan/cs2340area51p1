@@ -4,5 +4,8 @@
     <string name="title_classes">Classes</string>
     <string name="title_assignments">Assignments</string>
     <string name="title_exams">Exams</string>
-
+    <string name="button_task">Add Task</string>
+    <string name="button_task_sample_input">Task, Course, Due Date, Description (optional)</string>
+    <string name="button_exam">Add Exam</string>
+    <string name="button_exam_sample_input">Exam, Course, Due Date, Time, Location</string>
 </resources>
