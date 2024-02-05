@@ -50,10 +50,10 @@ public class ClassesFragment extends Fragment {
 
         selected = -1;
 
-        ListView courseListView = (ListView) view.findViewById(R.id.classList);
-        ArrayList<Course> backingList = new ArrayList<>();
-        ArrayAdapter<Course> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, backingList);
-        courseListView.setAdapter(adapter);
+        ListView classListView = (ListView) view.findViewById(R.id.classList);
+        ArrayList<Course> backingArray = new ArrayList<>();
+        ArrayAdapter<Course> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, backingArray);
+        classListView.setAdapter(adapter);
 
         EditText enterClass = view.findViewById(R.id.course_title);
         EditText enterTime = view.findViewById(R.id.course_time);
@@ -73,7 +73,7 @@ public class ClassesFragment extends Fragment {
                 String instructorStr = enterInstructor.getText().toString();
                 String locationStr = enterLocation.getText().toString();
                 String dayOfWeekStr = enterDaysOfWeek.getText().toString();
-                backingList.add(new Course(classStr,  instructorStr, locationStr, dayOfWeekStr, timeStr));
+                backingArray.add(new Course(classStr,  instructorStr, locationStr, dayOfWeekStr, timeStr));
                 adapter.notifyDataSetChanged();
 
                 enterClass.setText("");
@@ -85,19 +85,16 @@ public class ClassesFragment extends Fragment {
         });
 
         Button edit = view.findViewById(R.id.editClass);
-        courseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        classListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
-                Course now = backingList.get(position);
 
-                enterClass.setText(now.getCourseName());
-                enterTime.setText(now.getCourseTime());
-                enterInstructor.setText(now.getCourseTeacher());
-                enterLocation.setText(now.getCourseBuilding());
-                enterDaysOfWeek.setText(now.getCourseDaysOfWeek());
-
-                //Toast.makeText(Classes.this, now.getName() + " has been selected to be edited or deleted.", Toast.LENGTH_SHORT).show();
+                enterClass.setText(backingArray.get(position).getCourseName());
+                enterTime.setText(backingArray.get(position).getCourseTime());
+                enterInstructor.setText(backingArray.get(position).getCourseTeacher());
+                enterLocation.setText(backingArray.get(position).getCourseBuilding());
+                enterDaysOfWeek.setText(backingArray.get(position).getCourseDaysOfWeek());
             }
         });
 
@@ -105,12 +102,11 @@ public class ClassesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (selected != -1) {
-                    Course now = backingList.get(selected);
-                    now.setCourseName(enterClass.getText().toString());
-                    now.setCourseTime(enterTime.getText().toString());
-                    now.setCourseTeacher(enterInstructor.getText().toString());
-                    now.setCourseBuilding(enterLocation.getText().toString());
-                    now.setCourseDaysOfWeek(enterDaysOfWeek.getText().toString());
+                    backingArray.get(selected).setCourseName(enterClass.getText().toString());
+                    backingArray.get(selected).setCourseTime(enterTime.getText().toString());
+                    backingArray.get(selected).setCourseTeacher(enterInstructor.getText().toString());
+                    backingArray.get(selected).setCourseBuilding(enterLocation.getText().toString());
+                    backingArray.get(selected).setCourseDaysOfWeek(enterDaysOfWeek.getText().toString());
                     adapter.notifyDataSetChanged();
 
                     enterClass.setText("");
@@ -128,7 +124,7 @@ public class ClassesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (selected != -1) {
-                    backingList.remove(selected);
+                    backingArray.remove(selected);
                     adapter.notifyDataSetChanged();
                     selected = -1;
 

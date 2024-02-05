@@ -38,8 +38,6 @@ public class AssignmentsFragment extends Fragment {
         binding = FragmentAssignmentsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //final TextView textView = binding.textNotifications;
-        //notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
@@ -56,10 +54,10 @@ public class AssignmentsFragment extends Fragment {
 
         selected = -1;
 
-        ListView courseListView = (ListView) view.findViewById(R.id.assignmentList);
-        ArrayList<Assignment> backingList = new ArrayList<>();
-        ArrayAdapter<Assignment> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, backingList);
-        courseListView.setAdapter(adapter);
+        ListView assignmentListView = (ListView) view.findViewById(R.id.assignmentList);
+        ArrayList<Assignment> backingArray = new ArrayList<>();
+        ArrayAdapter<Assignment> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, backingArray);
+        assignmentListView.setAdapter(adapter);
 
         EditText enterAssignment = view.findViewById(R.id.assignment_title);
         EditText enterDueDate = view.findViewById(R.id.assignment_duedate);
@@ -75,7 +73,7 @@ public class AssignmentsFragment extends Fragment {
                 String assignmentStr = enterAssignment.getText().toString();
                 String dueDateStr = enterDueDate.getText().toString();
                 String courseStr = enterCourse.getText().toString();
-                backingList.add(new Assignment(assignmentStr, dueDateStr, courseStr));
+                backingArray.add(new Assignment(assignmentStr, dueDateStr, courseStr));
                 adapter.notifyDataSetChanged();
 
                 enterAssignment.setText("");
@@ -85,17 +83,14 @@ public class AssignmentsFragment extends Fragment {
         });
 
         Button edit = view.findViewById(R.id.editAssignment);
-        courseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        assignmentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
-                Assignment now = backingList.get(position);
+                enterAssignment.setText(backingArray.get(position).getAssignmentName());
+                enterDueDate.setText(backingArray.get(position).getAssignmentDueDate());
+                enterCourse.setText(backingArray.get(position).getAssignmentCourse());
 
-                enterAssignment.setText(now.getAssignmentName());
-                enterDueDate.setText(now.getAssignmentDueDate());
-                enterCourse.setText(now.getAssignmentCourse());
-
-                //Toast.makeText(Classes.this, now.getName() + " has been selected to be edited or deleted.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -103,10 +98,9 @@ public class AssignmentsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (selected != -1) {
-                    Assignment now = backingList.get(selected);
-                    now.setAssignmentName(enterAssignment.getText().toString());
-                    now.setAssignmentDueDate(enterDueDate.getText().toString());
-                    now.setAssociatedCourse(enterCourse.getText().toString());
+                    backingArray.get(selected).setAssignmentName(enterAssignment.getText().toString());
+                    backingArray.get(selected).setAssignmentDueDate(enterDueDate.getText().toString());
+                    backingArray.get(selected).setAssociatedCourse(enterCourse.getText().toString());
                     adapter.notifyDataSetChanged();
 
                     enterAssignment.setText("");
@@ -122,7 +116,7 @@ public class AssignmentsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (selected != -1) {
-                    backingList.remove(selected);
+                    backingArray.remove(selected);
                     adapter.notifyDataSetChanged();
                     selected = -1;
 
