@@ -22,7 +22,7 @@
     <string name="inputDays">Class Days</string>
 
     <!-- specific inputs -->
-    <string name="inputTaskName">Task Name</string>
+    <string name="inputTaskExamName">Task/Exam Name</string>
     <string name="inputAssignName">Assignment Name</string>
     <string name="buttonAddTask">Add Task</string>
     <string name="buttonAddExam">Add Exam</string>

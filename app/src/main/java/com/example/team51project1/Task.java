@@ -51,8 +51,9 @@ public class Task {
     public void setExamLocation(String examLocation){this.examLocation = examLocation;}
 
     public String toString(){
-        if(examTime == null  | examLocation == null | examTime == "" | examLocation == "" ){
-            return "Exam: " + taskName + "\nCourse: " + associatedCourse + "\nDue Date: "
+        if(examTime == null  | examLocation == null | examTime.equals("")
+                | examLocation.equals("")){
+            return "Task: " + taskName + "\nCourse: " + associatedCourse + "\nDue Date: "
                     + dueDate;
         }
         return "Exam: " + taskName + "\nCourse: " + associatedCourse + "\nDue Date: " + dueDate

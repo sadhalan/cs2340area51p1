@@ -19,7 +19,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.team51project1.Assignment;
 import com.example.team51project1.Course;
-import com.example.team51project1.ExamTask;
 import com.example.team51project1.R;
 import com.example.team51project1.Task;
 import com.example.team51project1.databinding.FragmentTasksBinding;
@@ -87,8 +86,8 @@ public class TaskFragment extends Fragment {
                 enterTask.setText("");
                 enterCourse.setText("");
                 enterDueDate.setText("");
-
-
+                enterTime.setText("");
+                enterLocation.setText("");
             }
         });
 
