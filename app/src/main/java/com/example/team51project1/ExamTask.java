@@ -1,6 +1,6 @@
 package com.example.team51project1;
 
-public class Task {
+public class ExamTask {
     private String taskName;
     private String associatedCourse;
     private String dueDate;
@@ -9,7 +9,7 @@ public class Task {
 
     private String examLocation;
 
-    public Task(String taskName, String associatedCourse, String dueDate, String examTime,
+    public ExamTask(String taskName, String associatedCourse, String dueDate, String examTime,
                     String examLocation) {
         this.taskName = taskName;
         this.associatedCourse = associatedCourse;
@@ -51,10 +51,6 @@ public class Task {
     public void setExamLocation(String examLocation){this.examLocation = examLocation;}
 
     public String toString(){
-        if(examTime == null  | examLocation == null | examTime == "" | examLocation == "" ){
-            return "Exam: " + taskName + "\nCourse: " + associatedCourse + "\nDue Date: "
-                    + dueDate;
-        }
         return "Exam: " + taskName + "\nCourse: " + associatedCourse + "\nDue Date: " + dueDate
                 + "\nTime: " + examTime + "\nLocation: " + examLocation;
 

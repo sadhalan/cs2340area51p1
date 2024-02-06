@@ -19,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.team51project1.Assignment;
 import com.example.team51project1.Course;
+import com.example.team51project1.ExamTask;
 import com.example.team51project1.R;
 import com.example.team51project1.Task;
 import com.example.team51project1.databinding.FragmentTasksBinding;
@@ -65,9 +66,13 @@ public class TaskFragment extends Fragment {
         EditText enterTask = view.findViewById(R.id.task_title);
         EditText enterDueDate = view.findViewById(R.id.task_duedate);
         EditText enterCourse = view.findViewById(R.id.task_course);
+        //enter exam attributes
+        EditText enterTime = view.findViewById(R.id.exam_time);
+        EditText enterLocation = view.findViewById(R.id.exam_location);
 
         Button addTask = view.findViewById(R.id.addTask);
-
+        //adding the exam (button)
+        Button addExam = view.findViewById(R.id.addExam);
 
         addTask.setOnClickListener(new View.OnClickListener() {
 
@@ -76,12 +81,36 @@ public class TaskFragment extends Fragment {
                 String taskStr = enterTask.getText().toString();
                 String dueDateStr = enterDueDate.getText().toString();
                 String courseStr = enterCourse.getText().toString();
-                backingArray.add(new Task(taskStr, dueDateStr, courseStr));
+                backingArray.add(new Task(taskStr, dueDateStr, courseStr, "", ""));
                 adapter.notifyDataSetChanged();
 
                 enterTask.setText("");
-                enterDueDate.setText("");
                 enterCourse.setText("");
+                enterDueDate.setText("");
+
+
+            }
+        });
+
+        addExam.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                String taskStr = enterTask.getText().toString();
+                String dueDateStr = enterDueDate.getText().toString();
+                String courseStr = enterCourse.getText().toString();
+                String timeStr = enterTime.getText().toString();
+                String locationStr = enterLocation.getText().toString();
+
+                backingArray.add(new Task(taskStr, courseStr, dueDateStr, timeStr, locationStr));
+                adapter.notifyDataSetChanged();
+
+                enterTask.setText("");
+                enterCourse.setText("");
+                enterDueDate.setText("");
+                enterTime.setText("");
+                enterLocation.setText("");
+
             }
         });
 
@@ -91,9 +120,10 @@ public class TaskFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
                 enterTask.setText(backingArray.get(position).getTaskName());
-                enterDueDate.setText(backingArray.get(position).getTaskDueDate());
                 enterCourse.setText(backingArray.get(position).getTaskCourse());
-
+                enterDueDate.setText(backingArray.get(position).getTaskDueDate());
+                enterTime.setText(backingArray.get(position).getExamTime());
+                enterLocation.setText(backingArray.get(position).getExamLocation());
             }
         });
 
@@ -102,13 +132,19 @@ public class TaskFragment extends Fragment {
             public void onClick(View v) {
                 if (selected != -1) {
                     backingArray.get(selected).setTaskName(enterTask.getText().toString());
-                    backingArray.get(selected).setTaskDueDate(enterDueDate.getText().toString());
                     backingArray.get(selected).setTaskCourse(enterCourse.getText().toString());
+                    backingArray.get(selected).setTaskDueDate(enterDueDate.getText().toString());
+                    backingArray.get(selected).setExamTime(enterTime.getText().toString());
+                    backingArray.get(selected).setExamLocation(enterLocation.getText().toString());
+
                     adapter.notifyDataSetChanged();
 
                     enterTask.setText("");
-                    enterDueDate.setText("");
                     enterCourse.setText("");
+                    enterDueDate.setText("");
+                    enterTime.setText("");
+                    enterLocation.setText("");
+
                     selected = -1;
                 }
             }
@@ -126,6 +162,8 @@ public class TaskFragment extends Fragment {
                     enterTask.setText("");
                     enterDueDate.setText("");
                     enterCourse.setText("");
+                    enterTime.setText("");
+                    enterLocation.setText("");
                 }
             }
         });
