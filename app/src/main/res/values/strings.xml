@@ -15,6 +15,11 @@
     <string name="inputDueDate">Due Date</string>
     <string name="inputTask">Task Name</string>
     <string name="inputAssocClass">Associated Class</string>
+    <string name="inputClassName">Class Name/Section</string>
+    <string name="inputTime">Time</string>
+    <string name="inputProf">Professor</string>
+    <string name="inputLocation">Building/Room #</string>
+    <string name="inputDays">Class Days</string>
 
     <!-- specific inputs -->
     <string name="inputTaskName">Task Name</string>
