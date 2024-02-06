@@ -90,7 +90,6 @@ public class AssignmentsFragment extends Fragment {
                 enterAssignment.setText(backingArray.get(position).getAssignmentName());
                 enterDueDate.setText(backingArray.get(position).getAssignmentDueDate());
                 enterCourse.setText(backingArray.get(position).getAssignmentCourse());
-
             }
         });
 

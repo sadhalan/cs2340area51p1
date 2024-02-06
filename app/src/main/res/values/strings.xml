@@ -6,4 +6,18 @@
     <string name="title_exams">Exams</string>
     <string name="title_tasks">To-Do List</string>
 
+    <!-- common button titles -->
+    <string name="button_delete">Delete</string>
+    <string name="button_add">Add</string>
+    <string name="button_edit">Edit</string>
+
+    <!-- hint inputs -->
+    <string name="inputDueDate">Due Date</string>
+    <string name="inputTask">Task Name</string>
+    <string name="inputAssocClass">Associated Class</string>
+
+    <!-- specific inputs -->
+    <string name="inputTaskName">Task Name</string>
+    <string name="inputAssignName">Assignment Name</string>
+
 </resources>

@@ -76,9 +76,6 @@ public class HomeFragment extends Fragment {
                         .navigate(R.id.action_navigation_home_to_navigation_todo);
             }
         });
-
-
-
     }
 
     @Override
